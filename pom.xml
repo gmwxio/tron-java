@@ -102,7 +102,7 @@
                     <plugin>
                         <groupId>com.oracle.substratevm</groupId>
                         <artifactId>native-image-maven-plugin</artifactId>
-                        <version>19.0.2</version>
+                        <version>19.1.0</version>
                         <executions>
                             <execution>
                                 <id>generate-native-image</id>
@@ -110,10 +110,12 @@
                                     <goal>native-image</goal>
                                 </goals>
                                 <configuration>
-                                    <!-- Remove on Windows since it does not support -no-server -->
+                                    <!-- Remove on 19.1.0 & Windows since it does not support -no-server -->
+                                    <!--
                                     <buildArgs>
-                                        --no-server
+                                        - -no-server
                                     </buildArgs>
+                                    -->
                                     <imageName>${project.artifactId}</imageName>
                                 </configuration>
                             </execution>
