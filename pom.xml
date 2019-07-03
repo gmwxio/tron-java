@@ -86,4 +86,41 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>graal</id>
+            <!-- Auto-activate when building with Graal VM -->
+            <activation>
+                <property>
+                    <name>jvmci.Compiler</name>
+                    <value>graal</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.oracle.substratevm</groupId>
+                        <artifactId>native-image-maven-plugin</artifactId>
+                        <version>19.0.2</version>
+                        <executions>
+                            <execution>
+                                <id>generate-native-image</id>
+                                <goals>
+                                    <goal>native-image</goal>
+                                </goals>
+                                <configuration>
+                                    <!-- Remove on Windows since it does not support -no-server -->
+                                    <buildArgs>
+                                        --no-server
+                                    </buildArgs>
+                                    <imageName>${project.artifactId}</imageName>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
