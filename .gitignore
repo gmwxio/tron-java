@@ -24,3 +24,4 @@ hs_err_pid*
 
 /tron-java.iml
 /target
+/dependency-reduced-pom.xml
